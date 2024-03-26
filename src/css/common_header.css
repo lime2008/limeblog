@@ -1,0 +1,206 @@
+.common_txt {
+	margin-bottom: 10px;
+}
+
+@media (max-width: 700px) {
+	.avatar {
+		margin: 0 auto;
+	}
+
+	.info {
+		margin-top: 15px;
+	}
+
+	.header {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		text-align: center;
+		transform: translate(-50%,-50%);
+	}
+
+	.thumb_img {
+		height: 30vh;
+		border-radius: 3px;
+		background-position: 50%;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.article {
+		margin: auto;
+		padding: 20px;
+		width: 90%;
+		max-width: 800px;
+		min-height: 300px;
+		border-radius: 10px;
+		background-color: #fafafa;
+		box-shadow: 0 0 10px #8989891a;
+	}
+
+	.quick_read {
+		margin-top: 10px;
+	}
+
+	.social_media {
+		margin-top: 15px;
+		justify-content: center;
+	}
+
+	.quick_read > p {
+		display: -webkit-box;
+		overflow: hidden;
+		color: #666;
+		text-overflow: ellipsis;
+		font-weight: 400;
+		font-size: 14px;
+		font-family: PingFangSC-Regular;
+		-webkit-line-clamp: 5;
+		-webkit-box-orient: vertical;
+	}
+
+	.quick_read > h3 {
+		display: -webkit-box;
+		overflow: hidden;
+		margin-bottom: 5px;
+		text-overflow: ellipsis;
+		font-family: PingFangSC-Regular;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+}
+
+@media (min-width: 700px) {
+    
+	.quick_read > p {
+		display: -webkit-box;
+		overflow: hidden;
+		color: #666;
+		text-overflow: ellipsis;
+		font-weight: 400;
+		font-size: 14px;
+		font-family: PingFangSC-Regular;
+		-webkit-line-clamp: 10;
+		-webkit-box-orient: vertical;
+	}
+
+	.quick_read > h3 {
+		display: -webkit-box;
+		overflow: hidden;
+		margin-bottom: 20px;
+		text-overflow: ellipsis;
+		font-family: PingFangSC-Regular;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
+	.quick_read {
+		flex: 50%;
+	}
+
+	.thumb {
+		margin-right: 20px;
+		flex: 45%;
+	}
+
+	.thumb_img {
+		height: 100%;
+		border-radius: 2.5px;
+		background-position: 50%;
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
+
+	.article {
+		display: flex;
+		margin: auto;
+		padding: 20px;
+		width: 90%;
+		max-width: 800px;
+		min-height: 300px;
+		border-radius: 10px;
+		background-color: #fafafa;
+		box-shadow: 0 0 10px #8989891a;
+	}
+
+	.avatar {
+		margin-right: 35px;
+		width: 7.5rem;
+		height: 7.5rem;
+	}
+
+	.header {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		display: flex;
+		transform: translate(-50%,-50%);
+		justify-content: center;
+		align-items: center;
+	}
+}
+
+.header {
+	width: 90%;
+}
+
+.background {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: -1;
+	overflow: hidden;
+	width: 100%;
+	height: 120vh;
+	background-position: center center;
+	background-size: cover;
+ /* 添加过渡效果 */
+}
+
+.background::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.4);
+ /* 这里的最后一个数值 0.5 是透明度，你可以根据需要调整 */
+	content: '';
+}
+
+.social_media {
+	display: flex;
+}
+
+.icon {
+	width: 25px;
+	height: 25px;
+	background-size: 100% 100%;
+}
+
+.icon_mask {
+	margin-right: 5px;
+	padding-top: 5px;
+	padding-left: 5px;
+	width: 35px;
+	height: 35px;
+	border-radius: 10px;
+	background: rgba(255,255,255,.98);
+}
+
+.avatar {
+	width: 8.5rem;
+	height: 8.5rem;
+	border: 8px solid rgba(255,255,255,0.5);
+	border-radius: 50%;
+	background-position: 50%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
+
+.post {
+	margin-top: 100vh;
+	padding-top: 30px;
+	background-color: #efefef;
+	color: black;
+}
