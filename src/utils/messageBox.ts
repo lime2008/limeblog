@@ -10,28 +10,39 @@ interface MessageBox {
 }
 
 let messageId = 0; // 初始消息框的ID
+const maxMessageBoxes = 3; // 最大消息框数量
+const timeouts: { [id: number]: NodeJS.Timeout } = {}; // 用于存储每个消息框的 setTimeout
 
 export const msg = {
   boxes: [] as MessageBox[],
 
   create(message: string, type: string) {
+    if (msg.boxes.length >= maxMessageBoxes) {
+      const idToRemove = msg.boxes[0].id; // 获取最早的消息框的 ID
+      msg.remove(idToRemove); // 移除最早的消息框
+    }
+
     const newId = messageId++; // 为新消息框生成唯一ID
     msg.boxes.push({ id: newId, message, type, fadeOut: false });
     msg.render();
 
     msg.autoDismiss(newId);
+
+    return newId; // 返回新消息框的ID
   },
 
   remove(id: number) {
     const index = msg.boxes.findIndex(box => box.id === id);
     if (index !== -1) {
+      clearTimeout(timeouts[id]); // 清除对应消息框的 setTimeout
+      delete timeouts[id]; // 从对象中移除对应的 setTimeout
       msg.boxes.splice(index, 1);
       msg.render();
     }
   },
 
   autoDismiss(id: number) {
-    setTimeout(() => {
+    timeouts[id] = setTimeout(() => {
       msg.fadeOut(id);
     }, 800);
   },

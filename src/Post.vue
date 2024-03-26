@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useRoute , useRouter } from 'vue-router'
 import * as config from './config';
-import generator from './utils/markdown_generate'
+import generator from './utils/markdownGenerate'
 import { ref } from 'vue'
 const route = useRoute();
 interface Item {

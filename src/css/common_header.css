@@ -87,7 +87,8 @@
 	.quick_read > h3 {
 		display: -webkit-box;
 		overflow: hidden;
-		margin-bottom: 20px;
+		color: black;
+		margin-bottom: 10px;
 		text-overflow: ellipsis;
 		font-family: PingFangSC-Regular;
 		-webkit-line-clamp: 2;

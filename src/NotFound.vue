@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as config from './config';
 import { onMounted , ref } from 'vue';
-import monitor from './utils/image_monitor'
+import monitor from './utils/imageMonitor'
 import loading from './components/loading.vue'
 import './css/common_header.css'
 const loadingShow = ref(true)
@@ -37,3 +37,4 @@ onMounted(()=>{
 
 
 </style> 
+./utils/imageMonitor
