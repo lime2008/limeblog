@@ -1,5 +1,6 @@
 import { createApp } from 'vue'
 import { createRouter, createWebHashHistory } from 'vue-router'
+import { loading_show } from './utils/sharedVars'
 import './style.css'
 import App from './Main.vue'
 import Home from './App.vue'
@@ -10,14 +11,23 @@ const routes = [
     { name: 'home' , path: '/', component: Home },
     { name: '404' , path: '/404', component: NotFound },
     { name: 'post' , path: '/post/:pid' , component: Post },
+    { name: 'links' , path: '/links' , component: Post },
+    { name: 'about' , path: '/about' , component: Post },
   ]
 const router = createRouter({
     history: createWebHashHistory(),
     routes: routes
 })
-router.beforeEach(async (to) => {
-    if(to.matched.length === 0) return { name: '404'}
-})
+
+router.beforeEach((to, _from, next) => {
+    loading_show.value = true;
+    if (to.matched.length === 0) return { name: '404' };
+    const nextRoute = () => {
+        next();
+    };
+
+    setTimeout(nextRoute, 300);
+});
 const app = createApp(App)
 app.use(router)
 app.mount('#app')

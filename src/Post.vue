@@ -4,31 +4,35 @@ import * as config from './config';
 import generator from './utils/markdownGenerate'
 import { ref } from 'vue'
 const route = useRoute();
-interface Item {
-    pid: string;
-    file: string;
-}
-const findFileByPid = (al: Item[], currentPid: string): string | undefined => {
-    let foundFile: string | undefined;
-
-    al.forEach(item => {
-        console.log(item.pid,currentPid)
-        if (item.pid === currentPid) {
-            foundFile = item.file;
-        }
+var data : config.Type;
+import { onMounted } from 'vue';
+import monitor from './utils/imageMonitor'
+import { loading_show } from './utils/sharedVars'
+onMounted(()=>{
+  monitor.monitorImageLoadProgress().then(progress => {
+      console.log('Image load progress:', progress);
+      console.log('加载成功');
+      setTimeout(() => {
+        loading_show.value = false
+      }, 500);
+    }).catch(error => {
+      console.error('Error:', error);
     });
+})
 
-    return foundFile;
-}
-
-const getPostfile = () => {
-    const file = findFileByPid(config.posts , String(route.params.pid));
-    if(file == ''){
-        console.log('not found')
-        useRouter().push({name : '404'})
+const findFileByPid = (al: config.Type[], currentPid: string): boolean => {
+    for (const item of al) {
+        console.log(item.pid, currentPid)
+        if (item.pid === currentPid) {
+            console.log(item)
+            data = item
+            return true
+        }
     }
-    return file
+
+    return false
 }
+
 const loadMarkdownFile = async (file : string) => {
     const response = await fetch(file);
     const markdownContent = await response.text();
@@ -40,15 +44,14 @@ const translateFile = (markdownContent : string) => {
 }
 
 const setup = async () => {
-    const file = getPostfile();
-    if(file == undefined){
+    
+    const status = findFileByPid(config.postsFromPostTs , String(route.params.pid));
+    if(!status){
         console.log('not found')
         useRouter().push({name : '404'})
         return
     }
-
-    content.value = translateFile(await loadMarkdownFile(file));
-    console.log(1)
+    content.value = translateFile(await loadMarkdownFile(data.file));
 
 }
 const content = ref('')
@@ -56,12 +59,39 @@ setup()
 </script>
 
 <template>
-    <div v-html="content"></div>
+<div class="image" :style="{ backgroundImage: 'url(' + data.image + ')' }">
+    <header class="details"><h1 class="entry-title">不识庐山真面目，只缘身在此山中【图】</h1><p class="entry-census"><span><a href="https://www.sunjinhao.top/archives/author/@sjhup/"><img src="https://geekgreenhouse.oss-cn-hangzhou.aliyuncs.com/SunGeekHouse%E5%9B%BE%E7%89%87/avatar/avatar.jpg"></a></span><span><a href="https://www.sunjinhao.top/archives/author/@sjhup/">@sjhup</a></span><span class="bull">·</span>3 天前<span class="bull">·</span>7 次阅读</p></header>
+</div>
+<div  v-html="content" class="content">	
 
+</div>
 
 
 </template>
 
 <style scoped>
-
+.details{
+    position: absolute;
+    max-width: 800px;
+    padding: 0 10px;
+    left:50%;
+    transform: translate(-50%,0);
+    bottom: 20px;
+}
+.image{
+    position: relative;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-origin: border-box;
+    width: 100%;
+    height: 50vh;
+}
+.content{
+    padding: 40px 0 0;
+    max-width: 800px;
+    color: #666;
+    margin-left: auto;
+    margin-right: auto;
+}
 </style> 

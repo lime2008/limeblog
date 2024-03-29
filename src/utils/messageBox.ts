@@ -50,12 +50,9 @@ export const msg = {
   fadeOut(id: number) {
     const index = msg.boxes.findIndex(box => box.id === id);
     if (index !== -1) {
-      msg.boxes[index].fadeOut = true; // 设置 fadeOut 标志为 true
+      msg.boxes[index].fadeOut = true;
       msg.render();
-
-      setTimeout(() => {
-        msg.remove(id);
-      }, 100); // Wait for the fade-out animation duration
+      msg.remove(id);
     }
   },
 

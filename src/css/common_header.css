@@ -18,111 +18,9 @@
 		text-align: center;
 		transform: translate(-50%,-50%);
 	}
-
-	.thumb_img {
-		height: 30vh;
-		border-radius: 3px;
-		background-position: 50%;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
-	.article {
-		margin: auto;
-		padding: 20px;
-		width: 90%;
-		max-width: 800px;
-		min-height: 300px;
-		border-radius: 10px;
-		background-color: #fafafa;
-		box-shadow: 0 0 10px #8989891a;
-	}
-
-	.quick_read {
-		margin-top: 10px;
-	}
-
-	.social_media {
-		margin-top: 15px;
-		justify-content: center;
-	}
-
-	.quick_read > p {
-		display: -webkit-box;
-		overflow: hidden;
-		color: #666;
-		text-overflow: ellipsis;
-		font-weight: 400;
-		font-size: 14px;
-		font-family: PingFangSC-Regular;
-		-webkit-line-clamp: 5;
-		-webkit-box-orient: vertical;
-	}
-
-	.quick_read > h3 {
-		display: -webkit-box;
-		overflow: hidden;
-		margin-bottom: 5px;
-		text-overflow: ellipsis;
-		font-family: PingFangSC-Regular;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-	}
 }
 
 @media (min-width: 700px) {
-    
-	.quick_read > p {
-		display: -webkit-box;
-		overflow: hidden;
-		color: #666;
-		text-overflow: ellipsis;
-		font-weight: 400;
-		font-size: 14px;
-		font-family: PingFangSC-Regular;
-		-webkit-line-clamp: 10;
-		-webkit-box-orient: vertical;
-	}
-
-	.quick_read > h3 {
-		display: -webkit-box;
-		overflow: hidden;
-		color: black;
-		margin-bottom: 10px;
-		text-overflow: ellipsis;
-		font-family: PingFangSC-Regular;
-		-webkit-line-clamp: 2;
-		-webkit-box-orient: vertical;
-	}
-
-	.quick_read {
-		flex: 50%;
-	}
-
-	.thumb {
-		margin-right: 20px;
-		flex: 45%;
-	}
-
-	.thumb_img {
-		height: 100%;
-		border-radius: 2.5px;
-		background-position: 50%;
-		background-size: cover;
-		background-repeat: no-repeat;
-	}
-
-	.article {
-		display: flex;
-		margin: auto;
-		padding: 20px;
-		width: 90%;
-		max-width: 800px;
-		min-height: 300px;
-		border-radius: 10px;
-		background-color: #fafafa;
-		box-shadow: 0 0 10px #8989891a;
-	}
 
 	.avatar {
 		margin-right: 35px;
@@ -135,6 +33,7 @@
 		top: 50%;
 		left: 50%;
 		display: flex;
+		color:#efefef;
 		transform: translate(-50%,-50%);
 		justify-content: center;
 		align-items: center;
@@ -200,8 +99,13 @@
 }
 
 .post {
-	margin-top: 100vh;
-	padding-top: 30px;
-	background-color: #efefef;
 	color: black;
 }
+.container{
+	padding:15px 0 30px 0;
+	margin-top: 100vh;
+	background-color: #f6f6f6;
+}
+.post > :first-child {
+	margin-top: 0;
+  }

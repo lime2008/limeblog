@@ -8,16 +8,11 @@ window.onresize = ()=>{
 const lastScrollTop = ref(window.pageYOffset || document.documentElement.scrollTop);
 const scrollMount = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-
-// 判断滚动方向
-if (scrollTop > lastScrollTop.value) {
-  // 向下滚动
-  translate.value = 'translate(-50%,-60px)'
-} else {
-  // 向上滚动
-  translate.value = 'translate(-50%,0)'
-}
-
+  if (scrollTop > lastScrollTop.value) {
+      translate.value = 'translate(-50%,calc(-65px - 2.5vh))'
+  } else {
+      translate.value = 'translate(-50%,0)'
+    }
   if(scrollTop < WINDOW_HEIGHT) {
     const moveLimit = WINDOW_HEIGHT * 0.2;
     px.value = moveLimit * (document.documentElement.scrollTop / document.documentElement.clientHeight)
@@ -28,9 +23,10 @@ if (scrollTop > lastScrollTop.value) {
 window.addEventListener('scroll',scrollMount);
 const translate = ref('translate(-50%,0)')
 const px = ref(0)
-
+const loading_show = ref(true)
 
 export{
 px,
-translate
+translate,
+loading_show
 }

@@ -1,11 +1,12 @@
 .tab {
 	z-index: 9999;
 	position: fixed;
-	top: 5px;
+	top: 2.5vh;
 	font-size: 20px;
 	left: 50%;
 	transform: translate(-50%,0);
 	background: rgba(17, 2, 2, 0.565);
+    transition: transform 0.1s ease;
 	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);
@@ -13,45 +14,27 @@
 	display: flex;
 }
 
-.tab-card {
+.tab_card {
 	text-align: center;
 	padding-top: 10px;
 	padding-bottom: 5px;
-	width: 25%;
+	width: 115px;
 	pointer-events: auto;
 	transition: 0.2s;
 }
 
-.tab-card:hover {
+.tab_card:hover {
 	color: #393939;
 	transition: 0.2s;
 	background-color: #00deff;
 }
 
-.tab-left {
+.tab_left {
 	border-top-left-radius: 10px;
 	border-bottom-left-radius: 10px;
 }
 
-.tab-right {
+.tab_right {
 	border-top-right-radius: 10px;
 	border-bottom-right-radius: 10px;
-}
-
-@media (min-width: 550px) {
-	.tab {
-		width: 38%;
-	}
-}
-
-@media (max-width: 550px) {
-	.tab {
-		width: 85%;
-	}
-}
-
-@media (max-width: 1000px) {
-	.tab {
-		width: 90%;
-	}
 }
