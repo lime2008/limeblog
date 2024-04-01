@@ -2,13 +2,16 @@
 import * as config from './config';
 import { onMounted } from 'vue';
 import { loading_show } from './utils/sharedVars'
-import { ref } from 'vue';
+import { ref , watch } from 'vue';
 import monitor from './utils/imageMonitor'
 import { px } from './utils/sharedVars'
 import './css/common_header.css'
 import './css/post_list.css'
 onMounted(()=>{
   loadMorePosts();
+  img_monitor();
+})
+const img_monitor = () => {
   monitor.monitorImageLoadProgress().then(progress => {
       console.log('Image load progress:', progress);
       console.log('加载成功');
@@ -18,22 +21,30 @@ onMounted(()=>{
     }).catch(error => {
       console.error('Error:', error);
     });
-})
+}
 const moreShow = ref(true)
 const loadedPosts = ref<config.Type[]>([]); 
 const postsPerPage = 2; 
 const startIndex = ref(0);
 const loadMorePosts = () => {
-  const endIndex = Math.min(startIndex.value + postsPerPage, config.postsFromPostTs.length);
-  if (endIndex > startIndex.value) {
-    loadedPosts.value = [...loadedPosts.value, ...config.postsFromPostTs.slice(startIndex.value, endIndex)];
-    startIndex.value = endIndex;
-  }
-  if (endIndex >= config.postsFromPostTs.length) {
-    moreShow.value = false; // No more posts to load, hide the load more button
-  }
-};
+  loading_show.value = true;
+  setTimeout(() => {
+    const endIndex = Math.min(startIndex.value + postsPerPage, config.postsFromPostTs.length);
+    if (endIndex > startIndex.value) {
+      loadedPosts.value = [...loadedPosts.value, ...config.postsFromPostTs.slice(startIndex.value, endIndex)];
+      startIndex.value = endIndex;
+    }
+    if (endIndex >= config.postsFromPostTs.length) {
+      moreShow.value = false;
+    }
+    img_monitor();
+  }, 300);
 
+};
+watch(loadedPosts, (newVal, oldVal) => {
+  console.log('loadedPosts 数组发生变化', newVal, oldVal);
+  // 在这里可以执行一些 DOM 刷新相关的操作
+});
 </script>
 
 <template>
@@ -41,7 +52,7 @@ const loadMorePosts = () => {
   <div class="avatar" :style="{ backgroundImage: 'url(' + config.avatar + ')' }"></div>
   <div class="info">
     <h2 class="special_font">{{ config.blog }}</h2>
-    <p>{{ config.description }}</p> 
+    <p class="special_font">{{ config.description }}</p> 
     <a href="https://www.lihouse.xyz/old.html" style="color:white;"><p class="common_txt">老版博客全部功能正常，请戳我访问！</p></a>
     <div class="social_media" style="margin-top:10px;">
     <a v-for="item in config.items" :href="item.url" target="_blank">
@@ -52,8 +63,8 @@ const loadMorePosts = () => {
 </div>
 <div class="container">
 <div class="post">
-  <article v-for="post in loadedPosts" style="margin-top: 35px;">
-    <router-link :to="'/post/' + post.pid" class="article">
+    <article v-for="post in loadedPosts" style="margin-top: 35px;" class="article">
+      <router-link :to="'/post/' + post.pid" class="article_content">
 		<div class="thumb">
       <div class="thumb_img" :style="{ backgroundImage: 'url(' + (post.thumb ? post.thumb : post.image) + ')' }"></div>
 		</div>
@@ -71,13 +82,13 @@ const loadMorePosts = () => {
 <style scoped>
 .pagination{
   padding: 13px 35px;
-  width:20%;
+  width:175px;
   text-align: center;
   margin:30px auto 0 auto;
-  border: 1px solid #D6D6D6;
+  /*border: 1px solid #D6D6D6;*/
   border-radius: 50px;
   background-color: #fafafa;
 	box-shadow: 0 0 10px #8989891a;
-  color: #ADADAD;
+  color: #666;
 }
 </style> 

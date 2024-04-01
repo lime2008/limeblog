@@ -6,7 +6,7 @@
 	left: 50%;
 	transform: translate(-50%,0);
 	background: rgba(17, 2, 2, 0.565);
-    transition: transform 0.1s ease;
+    transition: transform 0.2s ease;
 	box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 	backdrop-filter: blur(8px);
 	-webkit-backdrop-filter: blur(8px);

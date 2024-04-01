@@ -1,7 +1,7 @@
 const blog = 'LIMEUWU'
 const author = 'limeuwu'
 const url = 'https://www.lihouse.xyz/'
-const description = '本博客升级改造中！'
+const description = 'Puis-je prétendre à un miracle '
 const background = 'https://cdn-community.codemao.cn/47/community/d2ViXzMwMDFfNDk3MDQ3Ml8wXzE2NzEwODc3MTQ3MTRfNWNhMDJiYTM.png'
 //const background = 'https://cdn-community.codemao.cn/47/community/d2ViXzMwMDFfNzY5ODg3OV8wXzE3MDkyNjY5Njg5ODdfOGUxOGFmYWY.jpeg';
 import bili from "./assets/bilibili.svg"

@@ -13,7 +13,6 @@
 		padding: 20px;
 		width: 90%;
 		max-width: 800px;
-		min-height: 300px;
 		border-radius: 10px;
 		background-color: #fafafa;
 		box-shadow: 0 0 10px #8989891a;
@@ -44,6 +43,7 @@
 		display: -webkit-box;
 		overflow: hidden;
 		margin-bottom: 5px;
+        color: black;
 		text-overflow: ellipsis;
 		font-family: PingFangSC-Regular;
 		-webkit-line-clamp: 2;
@@ -94,14 +94,17 @@
 	}
 
 	.article {
-		display: flex;
 		margin: auto;
 		padding: 20px;
 		width: 90%;
 		max-width: 800px;
-		min-height: 300px;
 		border-radius: 10px;
 		background-color: #fafafa;
 		box-shadow: 0 0 10px #8989891a;
 	}
+
+    .article_content{
+        display: flex;
+        min-height: 250px;
+    }
 }

@@ -33,7 +33,6 @@
 		top: 50%;
 		left: 50%;
 		display: flex;
-		color:#efefef;
 		transform: translate(-50%,-50%);
 		justify-content: center;
 		align-items: center;
@@ -42,6 +41,7 @@
 
 .header {
 	width: 90%;
+	color:#efefef;
 }
 
 .background {

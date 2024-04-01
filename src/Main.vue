@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import './css/tab.css'
 import './css/message_box.css'
+import * as config from './config';
 import { translate , loading_show } from './utils/sharedVars'
 import { navigate } from './config'
 import loading from './components/loading.vue'
@@ -14,9 +15,16 @@ const router = useRouter();
 </div>
 <router-view></router-view>
 <transition><loading v-if="loading_show"/></transition>
+<div class="site_info">
+    <p class="special_font">COPYRIGHT © 2022-2024 {{ config.blog }}</p>
+</div>
 </template>
 
 <style>
-
-         
+.site_info{
+    padding:10px 0 20px 0;
+    color: #666;
+    text-align: center;
+    background-color: #f6f6f6;
+}
 </style> 

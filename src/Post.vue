@@ -60,7 +60,7 @@ setup()
 
 <template>
 <div class="image" :style="{ backgroundImage: 'url(' + data.image + ')' }">
-    <header class="details"><h1 class="entry-title">不识庐山真面目，只缘身在此山中【图】</h1><p class="entry-census"><span><a href="https://www.sunjinhao.top/archives/author/@sjhup/"><img src="https://geekgreenhouse.oss-cn-hangzhou.aliyuncs.com/SunGeekHouse%E5%9B%BE%E7%89%87/avatar/avatar.jpg"></a></span><span><a href="https://www.sunjinhao.top/archives/author/@sjhup/">@sjhup</a></span><span class="bull">·</span>3 天前<span class="bull">·</span>7 次阅读</p></header>
+    <header class="details"><h1 class="entry-title">不识庐山真面目，只缘身在此山中【图】</h1></header>
 </div>
 <div  v-html="content" class="content">	
 
@@ -74,6 +74,7 @@ setup()
     position: absolute;
     max-width: 800px;
     padding: 0 10px;
+    width: 90%;
     left:50%;
     transform: translate(-50%,0);
     bottom: 20px;
