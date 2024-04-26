@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import './css/tab.css'
 import './css/message_box.css'
-import * as config from './config';
-import { translate , loading_show } from './utils/sharedVars'
-import { navigate } from './config'
+import * as config from './entry_point';
+import { translate , loading_show  } from './utils/sharedVars'
 import loading from './components/loading.vue'
 //import { msg } from './utils/messageBox';
 import { useRouter } from 'vue-router';
@@ -11,20 +10,20 @@ const router = useRouter();
 </script>
 <template>
 <div class="tab" style="color:#fff;" :style="{ transform: translate }">
-    <div v-for="(item, index) in navigate" class="tab_card special_font" @click="router.push({name:item.name})" :class="{ 'tab_left': index === 0 , 'tab_right' : index === navigate.length - 1}">{{ item.page }}</div>
+    <div v-for="(item, index) in config.navigate" class="tab_card special_font" @click="router.push({name:item.name})" :class="{ 'tab_left': index === 0 , 'tab_right' : index === config.navigate.length - 1}">{{ item.page }}</div>
 </div>
 <router-view></router-view>
 <transition><loading v-if="loading_show"/></transition>
 <div class="site_info">
-    <p class="special_font">COPYRIGHT © 2022-2024 {{ config.blog }}</p>
+    <p class="special_font">COPYRIGHT © 2022-2024 {{ config.info.blog }}</p>
 </div>
 </template>
 
 <style>
 .site_info{
-    padding:10px 0 20px 0;
+    padding:20px 0 20px 0;
     color: #666;
     text-align: center;
-    background-color: #f6f6f6;
+    background-color: #ffffff;
 }
 </style> 

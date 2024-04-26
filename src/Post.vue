@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useRoute , useRouter } from 'vue-router'
-import * as config from './config';
+import * as config from './entry_point';
 import generator from './utils/markdownGenerate'
 import { ref } from 'vue'
 const route = useRoute();
-var data : config.Type;
+var data : config.postType;
 import { onMounted } from 'vue';
 import monitor from './utils/imageMonitor'
 import { loading_show } from './utils/sharedVars'
@@ -20,7 +20,7 @@ onMounted(()=>{
     });
 })
 
-const findFileByPid = (al: config.Type[], currentPid: string): boolean => {
+const findFileByPid = (al: config.postType[], currentPid: string): boolean => {
     for (const item of al) {
         console.log(item.pid, currentPid)
         if (item.pid === currentPid) {
@@ -45,7 +45,7 @@ const translateFile = (markdownContent : string) => {
 
 const setup = async () => {
     
-    const status = findFileByPid(config.postsFromPostTs , String(route.params.pid));
+    const status = findFileByPid(config.posts , String(route.params.pid));
     if(!status){
         console.log('not found')
         useRouter().push({name : '404'})
@@ -60,7 +60,7 @@ setup()
 
 <template>
 <div class="image" :style="{ backgroundImage: 'url(' + data.image + ')' }">
-    <header class="details"><h1 class="entry-title">不识庐山真面目，只缘身在此山中【图】</h1></header>
+    <header class="details"><h1 class="entry-title" :style="{ color : (data.style?.color ? data.style?.color : 'black')}">{{ data.title }}</h1></header>
 </div>
 <div  v-html="content" class="content">	
 
@@ -73,7 +73,6 @@ setup()
 .details{
     position: absolute;
     max-width: 800px;
-    padding: 0 10px;
     width: 90%;
     left:50%;
     transform: translate(-50%,0);
@@ -91,8 +90,10 @@ setup()
 .content{
     padding: 40px 0 0;
     max-width: 800px;
+    width:90%;
     color: #666;
     margin-left: auto;
     margin-right: auto;
+    margin-bottom:40px;
 }
 </style> 

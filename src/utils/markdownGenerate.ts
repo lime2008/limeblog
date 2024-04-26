@@ -1,6 +1,13 @@
 function markdownToHtml(markdown: string): string {
+    // Convert images before links to avoid conflict
+    markdown = markdown.replace(/!\[([^[]+)\]\(([^)]+)\)/g, '<img src="$2" alt="$1">');
+
+    // Then convert links
+    markdown = markdown.replace(/\[([^[]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>');
+
+    // The rest of the conversion remains the same
     // Convert headers
-    markdown = markdown.replace(/^(#+)(.*)/gm, ( hashes, text) => {
+    markdown = markdown.replace(/^(#{1,6})\s*(.*)$/gm, (match, hashes, text) => {
         const level = hashes.length;
         return `<h${level}>${text.trim()}</h${level}>`;
     });
@@ -15,8 +22,9 @@ function markdownToHtml(markdown: string): string {
     markdown = markdown.replace(/`(.*?)`/g, '<code>$1</code>');
 
     // Convert lists
-    markdown = markdown.replace(/^\s*[-*+] (.*)$/gm, '<li>$1</li>');
-    markdown = markdown.replace(/<li>(.*)<\/li>/g, '<ul>$&</ul>');
+    markdown = markdown.replace(/^\s*([-*+]) (.*)$/gm, '<li>$2</li>');
+    markdown = markdown.replace(/<\/li>\n<li>/g, '</li><li>');
+    markdown = markdown.replace(/<li>([\s\S]*?)<\/li>/g, '<ul>$1</ul>');
 
     // Convert blockquotes
     markdown = markdown.replace(/^(>.*)$/gm, '<blockquote>$1</blockquote>');
@@ -24,14 +32,16 @@ function markdownToHtml(markdown: string): string {
     // Convert horizontal rule
     markdown = markdown.replace(/^\s*[-*_]{3,}\s*$/gm, '<hr>');
 
-    // Convert links
-    markdown = markdown.replace(/\[(.*?)\]\((.*?)\)/g, '<a href="$2">$1</a>');
+    // Split into paragraphs and process each paragraph
+    const paragraphs = markdown.split('\n\n');
+    const processedParagraphs = paragraphs.map(paragraph => {
+        const trimmedParagraph = paragraph.trim();
+        return `<p>${trimmedParagraph.replace(/\n/g, '<br>')}</p>`;
+    });
 
-    // Convert images
-    markdown = markdown.replace(/!\[(.*?)\]\((.*?)\)/g, '<img src="$2" alt="$1">');
-
-    return markdown;
+    return `<div class="content">${processedParagraphs.join('')}</div>`;
 }
-export default{
+
+export default {
     markdownToHtml
 }

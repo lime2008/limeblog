@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as config from './config';
+import * as config from './entry_point';
 import { onMounted } from 'vue';
 import monitor from './utils/imageMonitor'
 import { loading_show } from './utils/sharedVars'
@@ -29,7 +29,7 @@ onMounted(()=>{
   </div>
 </div>
 
-<div class="background" :style="{ backgroundImage: 'url(' + config.background + ')' }"></div>
+<div class="background" :style="{ backgroundImage: 'url(' + config.info.background + ')' }"></div>
 
 </template>
 
@@ -37,4 +37,4 @@ onMounted(()=>{
 
 
 </style> 
-./utils/imageMonitor
+./utils/imageMonitor./entry_point

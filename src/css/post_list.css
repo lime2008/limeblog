@@ -1,4 +1,6 @@
-
+.post > :first-child {
+    margin-top: 0;
+}
 @media (max-width: 700px) {
 	.thumb_img {
 		height: 30vh;

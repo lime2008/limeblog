@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import * as config from './config';
+import * as config from './entry_point';
 import { onMounted } from 'vue';
 import { loading_show } from './utils/sharedVars'
 import { ref , watch } from 'vue';
@@ -23,18 +23,18 @@ const img_monitor = () => {
     });
 }
 const moreShow = ref(true)
-const loadedPosts = ref<config.Type[]>([]); 
+const loadedPosts = ref<config.postType[]>([]); 
 const postsPerPage = 2; 
 const startIndex = ref(0);
 const loadMorePosts = () => {
   loading_show.value = true;
   setTimeout(() => {
-    const endIndex = Math.min(startIndex.value + postsPerPage, config.postsFromPostTs.length);
+    const endIndex = Math.min(startIndex.value + postsPerPage, config.posts.length);
     if (endIndex > startIndex.value) {
-      loadedPosts.value = [...loadedPosts.value, ...config.postsFromPostTs.slice(startIndex.value, endIndex)];
+      loadedPosts.value = [...loadedPosts.value, ...config.posts.slice(startIndex.value, endIndex)];
       startIndex.value = endIndex;
     }
-    if (endIndex >= config.postsFromPostTs.length) {
+    if (endIndex >= config.posts.length) {
       moreShow.value = false;
     }
     img_monitor();
@@ -49,13 +49,13 @@ watch(loadedPosts, (newVal, oldVal) => {
 
 <template>
 <div class="header">
-  <div class="avatar" :style="{ backgroundImage: 'url(' + config.avatar + ')' }"></div>
+  <div class="avatar" :style="{ backgroundImage: 'url(' + config.info.avatar + ')' }"></div>
   <div class="info">
-    <h2 class="special_font">{{ config.blog }}</h2>
-    <p class="special_font">{{ config.description }}</p> 
+    <h2 class="special_font">{{ config.info.blog }}</h2>
+    <p class="special_font">{{ config.info.description }}</p> 
     <a href="https://www.lihouse.xyz/old.html" style="color:white;"><p class="common_txt">老版博客全部功能正常，请戳我访问！</p></a>
     <div class="social_media" style="margin-top:10px;">
-    <a v-for="item in config.items" :href="item.url" target="_blank">
+    <a v-for="item in config.info.items" :href="item.url" target="_blank">
     <div class="icon_mask"><div class="icon" :style="{ backgroundImage: 'url(' + item.logo + ')' }"></div></div>
     </a>
   </div>
@@ -63,7 +63,7 @@ watch(loadedPosts, (newVal, oldVal) => {
 </div>
 <div class="container">
 <div class="post">
-    <article v-for="post in loadedPosts" style="margin-top: 35px;" class="article">
+    <article v-for="post in loadedPosts" class="article">
       <router-link :to="'/post/' + post.pid" class="article_content">
 		<div class="thumb">
       <div class="thumb_img" :style="{ backgroundImage: 'url(' + (post.thumb ? post.thumb : post.image) + ')' }"></div>
@@ -77,7 +77,7 @@ watch(loadedPosts, (newVal, oldVal) => {
   <div v-if="moreShow" @click="loadMorePosts()" class="pagination">加载更多</div>
 </div>
 </div>
-<div ref="parallaxElement" class="background" :style="{ backgroundImage: 'url(' + config.background + ')' , transform: `translateY(-${px}px)` }"></div>
+<div ref="parallaxElement" class="background" :style="{ backgroundImage: 'url(' + config.info.background + ')' , transform: `translateY(-${px}px)` }"></div>
 </template>
 <style scoped>
 .pagination{
@@ -87,8 +87,9 @@ watch(loadedPosts, (newVal, oldVal) => {
   margin:30px auto 0 auto;
   /*border: 1px solid #D6D6D6;*/
   border-radius: 50px;
-  background-color: #fafafa;
+  background-color: #ffffff;
 	box-shadow: 0 0 10px #8989891a;
   color: #666;
 }
 </style> 
+./entry_point
