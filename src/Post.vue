@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useRoute , useRouter } from 'vue-router'
+import { formatTimestamp as formatter} from './utils/timeTransfer'
 import * as config from './entry_point';
 import generator from './utils/markdownGenerate'
 import { ref } from 'vue'
@@ -60,7 +61,7 @@ setup()
 
 <template>
 <div class="image" :style="{ backgroundImage: 'url(' + data.image + ')' }">
-    <header class="details"><h1 class="entry-title" :style="{ color : (data.style?.color ? data.style?.color : 'black')}">{{ data.title }}</h1></header>
+    <header class="details" :style="{ color : (data.style?.color ? data.style?.color : 'black')}"><h1 class="entry-title">{{ data.title }}</h1><p>发布于：{{ formatter(data.timestamp) }}{{ data.lable ? '  归档于：'+data.lable : '' }}</p></header>
 </div>
 <div  v-html="content" class="content">	
 

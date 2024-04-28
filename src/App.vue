@@ -2,8 +2,9 @@
 import * as config from './entry_point';
 import { onMounted } from 'vue';
 import { loading_show } from './utils/sharedVars'
-import { ref , watch } from 'vue';
+import { ref } from 'vue';
 import monitor from './utils/imageMonitor'
+import { formatTimestamp as formatter} from './utils/timeTransfer'
 import { px } from './utils/sharedVars'
 import './css/common_header.css'
 import './css/post_list.css'
@@ -41,10 +42,7 @@ const loadMorePosts = () => {
   }, 300);
 
 };
-watch(loadedPosts, (newVal, oldVal) => {
-  console.log('loadedPosts 数组发生变化', newVal, oldVal);
-  // 在这里可以执行一些 DOM 刷新相关的操作
-});
+
 </script>
 
 <template>
@@ -70,7 +68,8 @@ watch(loadedPosts, (newVal, oldVal) => {
 		</div>
     <div class="quick_read">
       <h3>{{ post.title }}</h3>
-     <p>{{ post.preview }}</p>
+      <div class="quick_content"><div class="insight"><p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p></div><p>{{ post.preview }}</p></div>
+     
     </div>
   </router-link>
 	</article>

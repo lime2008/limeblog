@@ -7,7 +7,7 @@ function markdownToHtml(markdown: string): string {
 
     // The rest of the conversion remains the same
     // Convert headers
-    markdown = markdown.replace(/^(#{1,6})\s*(.*)$/gm, (match, hashes, text) => {
+    markdown = markdown.replace(/^(#{1,6})\s*(.*)$/gm, (_ , hashes, text) => {
         const level = hashes.length;
         return `<h${level}>${text.trim()}</h${level}>`;
     });

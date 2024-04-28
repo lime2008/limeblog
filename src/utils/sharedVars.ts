@@ -4,7 +4,7 @@ WINDOW_HEIGHT = window.innerHeight
 window.onresize = ()=>{
   WINDOW_HEIGHT = window.innerHeight
 }
-var bottom_color = 'white'; 
+const site_show = ref(true);
 const lastScrollTop = ref(window.pageYOffset || document.documentElement.scrollTop);
 const scrollMount = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -26,7 +26,7 @@ const px = ref(0)
 const loading_show = ref(true)
 
 export{
-bottom_color,
+site_show,
 px,
 translate,
 loading_show
