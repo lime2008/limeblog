@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import * as config from './entry_point';
 import { onMounted } from 'vue';
-import { loading_show } from './utils/sharedVars'
+import { loading_show , WINDOW_WIDTH } from './utils/sharedVars'
 import { ref } from 'vue';
 import monitor from './utils/imageMonitor'
 import { formatTimestamp as formatter} from './utils/timeTransfer'
@@ -61,16 +61,52 @@ const loadMorePosts = () => {
 </div>
 <div class="container">
 <div class="post">
-    <article v-for="post in loadedPosts" class="article">
+
+
+  <article v-for="post in loadedPosts" class="article" v-if="(WINDOW_WIDTH < 700)">
       <router-link :to="'/post/' + post.pid" class="article_content">
 		<div class="thumb">
       <div class="thumb_img" :style="{ backgroundImage: 'url(' + (post.thumb ? post.thumb : post.image) + ')' }"></div>
 		</div>
     <div class="quick_read">
       <h3>{{ post.title }}</h3>
-      <div class="quick_content"><div class="insight"><p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p></div><p>{{ post.preview }}</p></div>
-     
+      <div class="quick_content">
+        <p>{{ post.preview }}</p>
+        <div class="insight"><p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p></div>
+      </div>
     </div>
+  </router-link>
+	</article>
+
+
+    <article v-for="(post, index) in loadedPosts" class="article" v-if="(WINDOW_WIDTH > 700)">
+    <router-link :to="'/post/' + post.pid">
+    <div v-if="index % 2 == 0" class="article_content">
+      <div class="thumb">
+      <div class="thumb_img thumb_left" :style="{ backgroundImage: 'url(' + (post.thumb ? post.thumb : post.image) + ')' }"></div>
+		</div>
+    <div class="quick_read quick_read_right">
+      <h3>{{ post.title }}</h3>
+      <div class="quick_content">
+        <p>{{ post.preview }}</p>
+        <div class="insight"><p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p></div>
+      </div>
+      </div>
+    </div>
+
+    <div v-if="index % 2 !== 0" class="article_content">
+    <div class="quick_read quick_read_left">
+      <h3>{{ post.title }}</h3>
+      <div class="quick_content">
+        <p>{{ post.preview }}</p>
+        <div class="insight"><p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p></div>
+      </div>
+      </div>
+      <div class="thumb">
+      <div class="thumb_img thumb_right" :style="{ backgroundImage: 'url(' + (post.thumb ? post.thumb : post.image) + ')' }"></div>
+		</div>
+    </div>
+
   </router-link>
 	</article>
   <div v-if="moreShow" @click="loadMorePosts()" class="pagination">加载更多</div>

@@ -1,8 +1,11 @@
 import { ref } from 'vue';
-var WINDOW_HEIGHT = 0;
-WINDOW_HEIGHT = window.innerHeight
+const WINDOW_HEIGHT = ref(0);
+const WINDOW_WIDTH = ref(0);
+WINDOW_HEIGHT.value = window.innerHeight
+WINDOW_WIDTH.value = window.innerWidth
 window.onresize = ()=>{
-  WINDOW_HEIGHT = window.innerHeight
+  WINDOW_HEIGHT.value = window.innerHeight
+  WINDOW_WIDTH.value = window.innerWidth
 }
 const site_show = ref(true);
 const lastScrollTop = ref(window.pageYOffset || document.documentElement.scrollTop);
@@ -13,8 +16,8 @@ const scrollMount = () => {
   } else {
       translate.value = 'translate(-50%,0)'
     }
-  if(scrollTop < WINDOW_HEIGHT) {
-    const moveLimit = WINDOW_HEIGHT * 0.2;
+  if(scrollTop < WINDOW_HEIGHT.value) {
+    const moveLimit = WINDOW_HEIGHT.value * 0.2;
     px.value = moveLimit * (document.documentElement.scrollTop / document.documentElement.clientHeight)
   }
   lastScrollTop.value = scrollTop;
@@ -29,5 +32,6 @@ export{
 site_show,
 px,
 translate,
-loading_show
+loading_show,
+WINDOW_WIDTH,
 }
