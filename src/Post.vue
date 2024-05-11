@@ -4,6 +4,7 @@
 	import * as config from './entry_point';
 	import generator from './utils/markdownGenerate'
 	import { ref } from 'vue'
+	import './css/common_page.css'
 	const route = useRoute();
 	var data : config.postType;
 	import { onMounted } from 'vue';
@@ -68,31 +69,5 @@
 	<div v-html="content" class="content">
 	</div>
 </template>
-<style scoped>
-	.details{
-	    position: absolute;
-	    max-width: 800px;
-	    width: 90%;
-	    left:50%;
-	    transform: translate(-50%,0);
-	    bottom: 20px;
-	}
-	.image{
-	    position: relative;
-	    background-repeat: no-repeat;
-	    background-size: cover;
-	    background-position: center center;
-	    background-origin: border-box;
-	    width: 100%;
-	    height: 50vh;
-	}
-	.content{
-	    padding: 40px 0 0;
-	    max-width: 800px;
-	    width:90%;
-	    color: #666;
-	    margin-left: auto;
-	    margin-right: auto;
-	    margin-bottom:40px;
-	}
+<style>
 </style>

@@ -43,6 +43,12 @@
         brief:'一个生活/资源 分享博客',
         url:'http://1ccd.cn/'
     },
+        {
+        image:'https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/18DAD281896408F73F4EF594111BECA2.jpg',
+        name:'GOOPHER\'s Blog',
+        brief:'记录点滴~',
+        url:'https://goopher.tk'
+    },
 ] */
 const links = [
     {
@@ -91,12 +97,7 @@ const links = [
         url:'https://moii.top/'
     },
 
-    {
-        image:'https://cdn.jsdelivr.net/gh/Goopher97/tuchuang@master/img/18DAD281896408F73F4EF594111BECA2.jpg',
-        name:'GOOPHER\'s Blog',
-        brief:'记录点滴~',
-        url:'https://goopher.tk'
-    },
+
     {
         image:'https://sunjinhao.top/favicon.ico',
         name:'一笑‘s Blog',
@@ -149,5 +150,11 @@ const links = [
         url:'https://motsuni.cn/'
     },
 ];
+
+const links_style = {
+    title : '我的朋友们',
+    color: '#ffffff',
+    image: 'https://cdn-community.codemao.cn/47/community/d2ViXzMwMDFfNzY5ODg3OV8wXzE2NzQwMDgzNzM4NTFfNmIxOThiMTg.png'
+    }
 links.sort(() => Math.random() - 0.5);
-export { links };
+export { links , links_style };

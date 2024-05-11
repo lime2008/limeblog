@@ -23,7 +23,15 @@ onMounted(()=>{
 <template>
 
 <div class="layer">
-  <div class="wrapper">
+  <div class="image" :style="{ backgroundImage: 'url(' + config.links_style.image + ')' }">
+		<header class="details" :style="{ color : config.links_style.color }" style="text-align: center;">
+			<h1 class="entry-title" style="font-size: 40px;">{{ config.links_style.title }}</h1>
+      <p>
+        这儿里记载着建站以来与本站友好交换友链的伙伴们，欢迎常来看看常作客呀！
+      </p>		</header>
+	</div>
+  <div class="content" style="padding: 20px 0;margin-bottom: 0;">
+    <div class="wrapper">
   <div v-for="link in config.links" class="box">
   <a :href=link.url target="_blank" class="link_detail">
     <div class="link_avatar" :style="{ backgroundImage: 'url(' + link.image + ')' }"></div>
@@ -35,12 +43,12 @@ onMounted(()=>{
   </div>
 </div>
 </div>
-
-<div class="background" :style="{ backgroundImage: 'url(' + config.info.background + ')' }"></div>
+</div>
 
 </template>
 
 <style scoped>
+
 .link_description{
   margin-left:10px;
   width:calc(100% - 58px);
@@ -68,11 +76,20 @@ onMounted(()=>{
 @media (min-width: 700px) {
 .box{width:calc(50% - 10px);
 margin-left:10px;}
+.wrapper:nth-child(2) {
+  margin-left: 0;
 }
+}
+
+
+@media (max-width: 700px) {
+.box{width:100%;}
+
+}
+
 .layer{
   align-content: center;
-  padding:calc(45px + 4vh) 0 20px 0;
-  background-color: rgba(255, 255, 255, 0.2);
+  padding:0 0 20px 0;
 }
 
 .box{
