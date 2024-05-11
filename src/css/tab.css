@@ -1,7 +1,7 @@
 .tab {
-	z-index: 9999;
+	z-index: 99;
 	position: fixed;
-	top: 2.5vh;
+	top: 20px;
 	font-size: 20px;
 	left: 50%;
 	transform: translate(-50%,0);

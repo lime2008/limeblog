@@ -49,6 +49,15 @@ onMounted(()=>{
 
 <style scoped>
 
+.image::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.3);
+	content: '';
+}
 .link_description{
   margin-left:10px;
   width:calc(100% - 58px);

@@ -12,7 +12,7 @@ const lastScrollTop = ref(window.pageYOffset || document.documentElement.scrollT
 const scrollMount = () => {
   const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
   if (scrollTop > lastScrollTop.value) {
-      translate.value = 'translate(-50%,calc(-65px - 2.5vh))'
+      translate.value = 'translate(-50%,calc(-65px - 20px))'
   } else {
       translate.value = 'translate(-50%,0)'
     }

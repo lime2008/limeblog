@@ -66,7 +66,7 @@
 			<p>发布于：{{ formatter(data.timestamp) }}{{ data.lable ? '  归档于：'+data.lable : '' }}</p>
 		</header>
 	</div>
-	<div v-html="content" class="content">
+	<div v-html="content">
 	</div>
 </template>
 <style>

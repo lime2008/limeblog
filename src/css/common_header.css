@@ -64,7 +64,6 @@
 	width: 100%;
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.4);
- /* 这里的最后一个数值 0.5 是透明度，你可以根据需要调整 */
 	content: '';
 }
 
