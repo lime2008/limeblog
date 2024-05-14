@@ -1,40 +1,40 @@
 .tab {
-	z-index: 99;
-	position: fixed;
-	top: 20px;
-	font-size: 20px;
-	left: 50%;
-	transform: translate(-50%,0);
-	background: rgba(17, 2, 2, 0.565);
+    z-index: 99;
+    position: fixed;
+    top: 20px;
+    font-size: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background: rgba(17, 2, 2, 0.565);
     transition: transform 0.2s ease;
-	box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.37);
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
-	border-radius: 10px;
-	display: flex;
+    box-shadow: 0 2px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    display: flex;
 }
 
 .tab_card {
-	text-align: center;
-	padding-top: 10px;
-	padding-bottom: 5px;
-	width: 115px;
-	pointer-events: auto;
-	transition: 0.2s;
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 5px;
+    width: 115px;
+    pointer-events: auto;
+    transition: 0.2s;
 }
 
 .tab_card:hover {
-	color: #393939;
-	transition: 0.2s;
-	background-color: #00deff;
+    color: #393939;
+    transition: 0.2s;
+    background-color: #00deff;
 }
 
 .tab_left {
-	border-top-left-radius: 10px;
-	border-bottom-left-radius: 10px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
 .tab_right {
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }

@@ -1,5 +1,5 @@
 
-/*const brokens  = [
+const brokens  = [
     {
         image:'https://images.haiblogs.xyz/o3sKtB.png',
         name:'海的小站',
@@ -49,7 +49,7 @@
         brief:'记录点滴~',
         url:'https://goopher.tk'
     },
-] */
+] 
 const links = [
     {
         image:'https://blog.yuzifu.top/favicon.ico',
@@ -152,9 +152,10 @@ const links = [
 ];
 
 const links_style = {
-    title : '我的朋友们',
+    title : '友人笺',
+    des : '这儿里记载着建站以来与本站友好交换友链的伙伴们，欢迎常来看看常作客呀！',
     color: '#ffffff',
     image: 'https://cdn-community.codemao.cn/47/community/d2ViXzMwMDFfNzY5ODg3OV8wXzE2NzQwMDgzNzM4NTFfNmIxOThiMTg.png'
     }
 links.sort(() => Math.random() - 0.5);
-export { links , links_style };
+export { links , links_style , brokens };
