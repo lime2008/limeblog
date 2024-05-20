@@ -149,6 +149,18 @@ const links = [
         brief:'每天写下自己的喜好',
         url:'https://motsuni.cn/'
     },
+    {
+        image:'https://www.mysticstars.cn/upload/MysticStars.svg',
+        name:'MysticStars',
+        brief:'Discover Infinity',
+        url:'https://www.mysticstars.cn'
+    },
+    {
+        image:'https://cravatar.cn/avatar/57ff1222a81493a0e72782530e77b269?s=500',
+        name:'Lafcadia’s Blog',
+        brief:'Discover Infinity',
+        url:'Et in Arcadia, ego.'
+    },
 ];
 
 const links_style = {
