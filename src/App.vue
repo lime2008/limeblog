@@ -8,6 +8,7 @@
     import { px } from './utils/sharedVars'
     import './css/common_header.css'
     import './css/post_list.css'
+    import { lables } from './config/post'
     onMounted(()=>{
       loadMorePosts();
       img_monitor();
@@ -73,7 +74,16 @@
                         <div class="quick_content">
                             <p>{{ post.preview }}</p>
                             <div class="insight">
-                                <p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p>
+                                <div class="tag_list">
+                                        <div class="tags">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables['time'] + ')' }"></div>
+                                    <p >{{ formatter(post.timestamp) }}</p>
+                                </div>
+                                    <div class="tags" v-for="tags in post.lable" v-if="post.lable">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables[tags.key] + ')' }" v-if="tags.key"></div>
+                                    <p >{{ tags.name }}</p>
+                                </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -90,7 +100,16 @@
                             <div class="quick_content">
                                 <p>{{ post.preview }}</p>
                                 <div class="insight">
-                                    <p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p>
+                                    <div class="tag_list" style="justify-content: flex-end;">
+                                        <div class="tags">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables['time'] + ')' }"></div>
+                                    <p >{{ formatter(post.timestamp) }}</p>
+                                </div>
+                                    <div class="tags" v-for="tags in post.lable" v-if="post.lable">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables[tags.key] + ')' }" v-if="tags.key"></div>
+                                    <p >{{ tags.name }}</p>
+                                </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +120,16 @@
                             <div class="quick_content">
                                 <p>{{ post.preview }}</p>
                                 <div class="insight">
-                                    <p>发布于：{{ formatter(post.timestamp) }}{{ (post.lable ? ' 归档于：'+post.lable : '') }}</p>
+                                    <div class="tag_list">
+                                        <div class="tags">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables['time'] + ')' }"></div>
+                                    <p >{{ formatter(post.timestamp) }}</p>
+                                </div>
+                                    <div class="tags" v-for="tags in post.lable" v-if="post.lable">
+                                    <div class="tag" :style="{ backgroundImage: 'url(' + lables[tags.key] + ')' }" v-if="tags.key"></div>
+                                    <p >{{ tags.name }}</p>
+                                </div>
+                                </div>
                                 </div>
                             </div>
                         </div>
@@ -117,6 +145,37 @@
     <div ref="parallaxElement" class="background" :style="{ backgroundImage: 'url(' + config.info.background + ')' , transform: `translateY(-${px}px)` }"></div>
 </template>
 <style scoped>
+.tag{
+    background-position: 50%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    width:13px;
+    height:13px;
+    margin-right:2.5px;
+}
+.tag_list{
+    height: max-content;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    
+    color: #666;
+}
+.tags{
+    margin-right: 5px;
+
+
+    border: .05px solid #979797;
+
+    border-radius: 8px;
+    width: max-content;
+    padding: 3px;
+    color: var(--color-box-shaow);
+    font-size: 12px;
+
+    display: inline-flex;
+    align-items: center;
+}
     .pagination {
         padding: 13px 35px;
         width: 175px;
